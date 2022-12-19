@@ -1,5 +1,5 @@
 import { ActionType } from "../constants/action-types"
-
+import shopMartApi from "../../api/shopMartApi"
 //this is for adding product into the cart
 export const setProducts=(products)=>{
     return {
@@ -20,3 +20,33 @@ export const removeSelectedProduct=()=>{
         type:ActionType.REMOVE_SELECTED_PRODUCT,
     }
 }
+
+export const fetchProducts=()=>{
+
+    return async (dispatch)=>{
+        const response=await shopMartApi.get('/products');
+        console.log(response.data)
+        dispatch({
+            type:ActionType.FETCH_PRODUCTS,
+            payload:response.data,
+        })
+
+    }
+ 
+   
+}
+export const fetchProduct=(id)=>{
+
+    return async (dispatch)=>{
+        const response=await shopMartApi.get(`/products/${id}`);
+        console.log(response.data)
+        dispatch({
+            type:ActionType.SELECTED_PRODUCT,
+            payload:response.data,
+        })
+
+    }
+ 
+   
+}
+

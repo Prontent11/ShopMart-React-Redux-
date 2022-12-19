@@ -14,15 +14,13 @@ const initialState={
 export const productReducer=(state=initialState,action)=>{
 
     const {type,payload}=action;
-    const {SET_PRODUCTS,SELECTED_PRODUCT,REMOVE_SELECTED_PRODUCT} =ActionType;
+    const {SET_PRODUCTS,FETCH_PRODUCTS,SELECTED_PRODUCT,REMOVE_SELECTED_PRODUCT} =ActionType;
     
     switch (type) {
         case SET_PRODUCTS:
             return {...state,products:payload};
-        // case SELECTED_PRODUCT:
-            
-        //     break;
-    
+        case FETCH_PRODUCTS:
+            return {...state,products:payload};
         default:
             return state;
     }
